@@ -113,7 +113,7 @@ p{
   width: 20px;
 }
 form{
-  margin-top: 25px;
+  margin-top: 100px;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
@@ -140,6 +140,6 @@ button{
   text-align: center;
   margin:10px auto auto 65%;
   background: transparent;
-  border: black solid 1
+  border: black solid 1px;
 }
 </style>

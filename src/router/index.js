@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
+import load from 'components/load'
 import face from 'components/face'
 import intro from 'components/intro'
 import join from 'components/join'
@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'load',
+      component: load
     },
     {
       path: '/intro',

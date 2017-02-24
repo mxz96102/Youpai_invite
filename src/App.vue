@@ -14,6 +14,7 @@ export default {
 html,body{
   margin: 0;
   padding: 0;
+  max-width: 414px;
 }
 
 #app {

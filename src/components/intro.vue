@@ -48,7 +48,7 @@ export default {
       document.getElementsByClassName('logo')[0]
     ]
 
-    let p=text.innerText,i;
+    let p=text.innerText,i,touchstart=[];
 
     setTimeout(()=>{pics[0].className='animated slideInLeft'}, 1000)
     setTimeout(()=>{pics[1].className='animated slideInLeft'}, 1500)
@@ -65,6 +65,21 @@ export default {
     }
 
     setTimeout(()=>{logo.className='animated logo fadeInLeft'}, 4000 + (i)*100 +100)
+
+    document.getElementsByClassName('intro')[0].addEventListener('touchstart',(event) => {
+      touchstart.push(event)
+    })
+
+    document.getElementsByClassName('intro')[0].addEventListener('touchend', (event) => {
+      let pre = touchstart.pop()
+
+      console.log(event)
+
+      if(pre.changedTouches[0].pageY > event.changedTouches[0].pageY){
+        document.getElementsByClassName('intro')[0].className += " fadeOutUp"
+        setTimeout(()=>{location.hash = "#/join"},1000)
+      }
+    })
   }
 }
 </script>

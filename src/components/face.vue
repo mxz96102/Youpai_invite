@@ -1,32 +1,46 @@
 <template>
-  <div class="join animated">
+  <div class="face animated">
     <div class="four animated">
-      <img class="hidden" src="../assets/p1.png" />
-      <img class="hidden" src="../assets/p2.png" />
-      <img class="hidden" src="../assets/p3.png" />
-      <img class="hidden" src="../assets/p4.png" />
-      <img class="hidden layout" src="../assets/layout.png"/>
+      <img class="hidden" src="../assets/face.png" />
     </div>
-    <div class="title hidden">
-      入<br/>
-      驻<br/>
-      条<br/>
-      件<br/>
-      。
-    </div>
-    <p>
-      只要你有热爱摄影的心，具有一定的摄影基础，满足以下条件：<br/>
-      <br/>
-      1.有两套以上独立拍摄的、具有一定质量的人像作品。<br/>
-      2.对模特负责，有打磨作品的匠人精神。<br/>
-      3.能够通过友拍平台作品审核组的审核。<br/>
-      4.认同友拍平台价值观。<br/>
 
-    </p>
-    <div class="logo hidden">
-      <img src="../assets/location.png"/><br/>
-      友<br/>拍
+    <div class="under">
+      <div class="logo hidden">
+        <img src="../assets/location.png"/><br/>
+        友<br/>拍
+      </div>
+      <div class="linear hidden">
+        一个叫做友拍的平台
+      </div>
+      <div class="linear hidden">
+        为这群记录者我们打造了
+      </div>
+      <div class="linear hidden">
+        真实地把这一切的景象记录下来
+      </div>
+      <div class="linear hidden">
+        透过一组组镜片
+      </div>
+      <div class="linear hidden">
+        而有一群摄影师
+      </div>
+      <div class="linear hidden">
+        图书馆里安静品书的她
+      </div>
+      <div class="linear hidden">
+        篮球场上帅气灌篮的他
+      </div>
+      <div class="linear hidden">
+        青葱校园留下每个人不同的足迹
+      </div>
+      <div class="hr hidden"></div>
+      <div class="title hidden">
+        邀<br/>
+        请<br/>
+        函<br/>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -34,36 +48,47 @@
 require('../assets/animate.css')
 
 export default {
-  name: 'join',
+  name: 'face',
   data () {
     return {
     }
   },
   mounted(){
-    let [pics,title,text,logo] =
+    let [pics,title,text,logo,hr] =
     [document.getElementsByClassName('four')[0].getElementsByTagName('img'),
       document.getElementsByClassName('title')[0],
-      document.getElementsByTagName('p')[0],
-      document.getElementsByClassName('logo')[0]
+      document.getElementsByClassName('linear'),
+      document.getElementsByClassName('logo')[0],
+      document.getElementsByClassName('hr')[0]
     ]
 
-    let p=text.innerText,i;
+    console.log(text);
+
+    let i,touchstart=[];
 
     setTimeout(()=>{pics[0].className='animated slideInLeft'}, 1000)
-    setTimeout(()=>{pics[1].className='animated slideInLeft'}, 1500)
-    setTimeout(()=>{pics[2].className='animated slideInLeft'}, 2000)
-    setTimeout(()=>{pics[3].className='animated slideInLeft'}, 2500)
-    setTimeout(()=>{pics[4].className='layout animated slideInLeft'}, 3000)
-    setTimeout(()=>{title.className='animated title fadeInLeft'}, 3500)
-    text.innerText= "";
-    text.className="";
 
-    for(i=0;i<p.length;i++){
-     let a = i
-     setTimeout(()=>{text.innerText += p[a]}, 4000 + (i)*100)
+    for(i=0; i<text.length; i++){
+      let a = i;
+      setTimeout(()=>{text[a].className='animated linear fadeInLeft'},1500+100*i)
     }
+    setTimeout(()=>{hr.className='animated hr fadeInLeft'}, 1500+100*i+100)
+    setTimeout(()=>{title.className='animated title fadeInRight'}, 1500+100*i+200)
+    setTimeout(()=>{logo.className='animated logo fadeInLeft'}, 1600)
+    document.getElementsByClassName('face')[0].addEventListener('touchstart',(event) => {
+      touchstart.push(event)
+    })
 
-    setTimeout(()=>{logo.className='animated logo fadeInLeft'}, 4000 + (i)*100 +100)
+    document.getElementsByClassName('face')[0].addEventListener('touchend', (event) => {
+      let pre = touchstart.pop()
+
+      console.log(event)
+
+      if(pre.changedTouches[0].pageY > event.changedTouches[0].pageY){
+        document.getElementsByClassName('face')[0].className += " fadeOutUp"
+        setTimeout(()=>{location.hash = "#/intro"},1000)
+      }
+    })
   }
 }
 </script>
@@ -75,7 +100,7 @@ export default {
   justify-content:center;
 }
 .four>img{
-  width: 90%;
+  width: 75%;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -87,14 +112,27 @@ export default {
   margin-bottom: 0;
 }
 .title{
-  top: 5%;
-  left: 10%;
-  position: absolute;
-  float: left;
+  width: 20%;
   font-size: 40px;
+  float: left;
+
+}
+.linear{
+  float: left;
+  width: 1.2rem;
+  line-height: 1rem
+}
+.hr{
+  height: 14rem;
+  float:left;
+  margin-left: 5%;
+  border-left: grey solid 2px
 }
 .hidden{
   visibility: hidden;
+}
+.under{
+  margin-top: 5px;
 }
 p{
   text-align: left;
@@ -106,7 +144,10 @@ p{
   margin-right:auto;
 }
 .logo{
-  margin-left: 85%;
+  margin-left: 10%;
+  float: left;
+  margin-top: 35%;
+  margin-right: 5%;
 }
 .logo>img{
   width: 20px;

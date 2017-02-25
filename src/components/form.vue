@@ -25,7 +25,7 @@
       <label>邮箱</label><input type="text"/>
      </div>
      <div class="input">
-      <label>个人简介</label><input type="text"/>
+         <label>个人简介</label><br/><textarea class="more" ></textarea>
      </div>
      <div class="input" style="border:none">
       <label>个人标签</label><input type="text" disabled="true"/>
@@ -120,20 +120,29 @@ form{
 }
 label{
   margin-right: 15px;
-
+  text-align: left
 }
 .input{
   margin-top: 15px;
   border-bottom: black solid 1px;
   padding-bottom: 5px;
+  justify-content: left;
+}
+.more{
+  height: 5em;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  width:100%;
 }
 input{
   background: transparent;
   border: none;
-  font-size: 1rem
+  font-size: 1rem;
+
 }
 button{
-  width: 4em;
+  width: 5em;
   height: 2em;
   line-height: 2em;
   border-radius: 2em;
